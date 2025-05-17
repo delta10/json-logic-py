@@ -249,6 +249,9 @@ def apply_map(data, iterable_path, scoped_logic):
     iterable = jsonLogic(iterable_path, data) or []
     return list(map(lambda item: jsonLogic(scoped_logic, item), iterable))
 
+def substr(s, start, length=None):
+    s = str(s)
+    return s[start:] if length is None else s[start:start+length]
 
 operations = {
     "==": soft_equals,
@@ -282,6 +285,7 @@ operations = {
     "datetime": get_datetime,
     "rdelta": apply_relative_delta,
     "duration": get_duration,
+    "substr": substr,
 }
 
 scoped_operations = {
